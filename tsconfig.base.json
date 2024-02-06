@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@betalist/analytics": ["lib/analytics/src/index.ts"],
       "@betalist/types": ["lib/types/src/index.ts"]
     }
   },

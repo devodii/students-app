@@ -1,1 +1,1 @@
-export { Project } from "./lib/project";
+export * from "./lib/project";
