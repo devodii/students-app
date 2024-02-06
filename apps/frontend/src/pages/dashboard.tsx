@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { Wrapper } from "../components/wrapper";
 import AnalyticsPage from "./analytics";
+import { CreateProject } from "../components/create-project";
 
 export default function DashboardPage() {
   const [searchParams] = useSearchParams();
@@ -9,5 +10,9 @@ export default function DashboardPage() {
 
   if (shouldRenderAnalytics) return <AnalyticsPage />;
 
-  return <Wrapper>Dashboard!</Wrapper>;
+  return (
+    <Wrapper>
+      <CreateProject />
+    </Wrapper>
+  );
 }
