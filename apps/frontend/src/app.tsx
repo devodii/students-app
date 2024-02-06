@@ -1,5 +1,6 @@
 import * as React from "react";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { Loader } from "./components/loader";
 
 const HomePage = React.lazy(() => import("./pages/index"));
 const SignInPage = React.lazy(() => import("./pages/auth/sign-in"));
@@ -10,16 +11,18 @@ const DomainPage = React.lazy(() => import("./pages/domain"));
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Outlet />}>
-          <Route index element={<HomePage />} />
-          <Route path="sign-in" element={<SignInPage />} />
-          <Route path="sign-up" element={<SignUpPage />} />
+      <React.Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<Outlet />}>
+            <Route index element={<HomePage />} />
+            <Route path="sign-in" element={<SignInPage />} />
+            <Route path="sign-up" element={<SignUpPage />} />
 
-          <Route path="dashboard" element={<DashboardPage />} />
-          <Route path=":domain" element={<DomainPage />} />
-        </Route>
-      </Routes>
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path=":domain" element={<DomainPage />} />
+          </Route>
+        </Routes>
+      </React.Suspense>
     </BrowserRouter>
   );
 }
