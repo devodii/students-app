@@ -1,9 +1,14 @@
-import { Wrapper } from "./components/wrapper";
+import * as React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+const HomePage = React.lazy(() => import("./pages/index"));
 
 export default function App() {
   return (
-    <Wrapper>
-      <div className="text-4xl font-semibold">Betalist</div>
-    </Wrapper>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
