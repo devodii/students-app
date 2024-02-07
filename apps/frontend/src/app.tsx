@@ -19,7 +19,9 @@ export default function App() {
             <Route path="sign-up" element={<SignUpPage />} />
 
             <Route path="dashboard" element={<DashboardPage />} />
-            <Route path=":domain" element={<DomainPage />} />
+            <Route path="w" element={<Outlet />}>
+              <Route path=":domain" element={<DomainPage />} />
+            </Route>
           </Route>
         </Routes>
       </React.Suspense>
