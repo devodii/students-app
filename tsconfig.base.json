@@ -16,8 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@betalist/analytics": ["lib/analytics/src/index.ts"],
-      "@betalist/types": ["lib/types/src/index.ts"]
+      "@betalist/analytics": ["libs/analytics/src/index.ts"],
+      "@betalist/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
