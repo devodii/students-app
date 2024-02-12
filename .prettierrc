@@ -1,6 +1,5 @@
 {
   "singleQuote": false,
   "arrowParens": "avoid",
-  "tabWidth": 2,
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "tabWidth": 2
 }
