@@ -16,8 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@betalist/analytics": ["libs/analytics/src/index.ts"],
-      "@betalist/types": ["libs/types/src/index.ts"]
+      "@students-app/analytics": ["libs/analytics/src/index.ts"],
+      "@students-app/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
