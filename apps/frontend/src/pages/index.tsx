@@ -17,7 +17,7 @@ export default function App() {
           <Link to="/sign-up">SignUp</Link>
         </li>
         <li>
-          <Link to="/w/domain">Domain</Link>
+          <Link to="/courses/:reytyr">course</Link>
         </li>
       </ul>
     </Wrapper>

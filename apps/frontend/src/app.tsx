@@ -6,7 +6,7 @@ const HomePage = React.lazy(() => import("./pages/index"));
 const SignInPage = React.lazy(() => import("./pages/auth/sign-in"));
 const SignUpPage = React.lazy(() => import("./pages/auth/sign-up"));
 const DashboardPage = React.lazy(() => import("./pages/dashboard"));
-const DomainPage = React.lazy(() => import("./pages/domain"));
+const CoursePage = React.lazy(() => import("./pages/course"));
 
 export default function App() {
   return (
@@ -19,8 +19,8 @@ export default function App() {
             <Route path="sign-up" element={<SignUpPage />} />
 
             <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="w" element={<Outlet />}>
-              <Route path=":domain" element={<DomainPage />} />
+            <Route path="courses" element={<Outlet />}>
+              <Route path=":id" element={<CoursePage />} />
             </Route>
           </Route>
         </Routes>
