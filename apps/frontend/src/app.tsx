@@ -7,8 +7,9 @@ const SignInPage = React.lazy(() => import("./pages/auth/sign-in"));
 const SignUpPage = React.lazy(() => import("./pages/auth/sign-up"));
 const DashboardPage = React.lazy(() => import("./pages/dashboard"));
 const CoursePage = React.lazy(() => import("./pages/course"));
-const CoursesPage = React.lazy(() => import("./pages/courses"));
- 
+const CoursesPage = React.lazy(() => import("./pages/list-courses"));
+
+const CreateCoursePage = React.lazy(() => import("./pages/create-course"));
 
 export default function App() {
   return (
@@ -20,9 +21,12 @@ export default function App() {
             <Route path="sign-in" element={<SignInPage />} />
             <Route path="sign-up" element={<SignUpPage />} />
 
-            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="dashboard">
+              <Route index element={<DashboardPage />} />
+              <Route path="new" element={<CreateCoursePage />} />
+            </Route>
             <Route path="courses">
-              <Route index element={<CoursesPage />}/>
+              <Route index element={<CoursesPage />} />
               <Route path=":id" element={<CoursePage />} />
             </Route>
           </Route>

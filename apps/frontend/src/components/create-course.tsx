@@ -1,5 +1,8 @@
 import * as React from "react";
-import { FormEvent } from "@students-app/types";
+import { Course, FormEvent } from "@students-app/types";
+
+import supabase from "../lib/supabase";
+import { generateCourseId } from "../lib/generate-course-id";
 
 const initialState = {
   nameWithCode: "",
@@ -29,14 +32,30 @@ function reducer(state: typeof initialState, action: any) {
   }
 }
 
-export function CreateProject() {
+async function handleCreate(props: Course) {
+  const { error } = await supabase.from("courses").insert({ ...props });
+
+  if (error) {
+    console.log("an error occured: ", error);
+  }
+}
+
+export function CreateCourse() {
   const [{ venue, time, instructor, nameWithCode }, dispatch] =
     React.useReducer(reducer, initialState);
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    if (!nameWithCode) return;
+    if (!nameWithCode || !venue || !time || !instructor) return;
+
+    await handleCreate({
+      id: generateCourseId(),
+      instructor,
+      nameWithCode,
+      time,
+      venue,
+    });
   }
 
   return (
