@@ -13,7 +13,7 @@ export default function CoursesPage() {
   return (
     <Wrapper>
       {courses?.map(course => (
-        <Link to={course.id}>
+        <Link to={course.id} key={course.id}>
           <CourseCard {...course} />
         </Link>
       ))}
