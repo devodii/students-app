@@ -3,16 +3,32 @@ import { FormEvent } from "@students-app/types";
 import { Button, Input, Label } from "../../components/ui";
 import { Wrapper } from "../../components/wrapper";
 
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 export default function SignInPage() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  function handleSubmit(event: FormEvent) {
+  const navigate = useNavigate();
+
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
 
     if (!email || !password) return;
 
-    console.log({ email, password });
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/auth/signin`,
+      { email, password }
+    );
+
+    // todo: add type for data
+    if (data.status) {
+      navigate("/dashboard");
+    } else {
+      // todo: emit toast
+      alert(data.message);
+    }
   }
 
   return (
