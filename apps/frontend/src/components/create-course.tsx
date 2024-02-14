@@ -4,14 +4,27 @@ import { Course, FormEvent } from "@students-app/types";
 import supabase from "../lib/supabase";
 import { generateCourseId } from "../lib/generate-course-id";
 
-const initialState = {
+import { Button, Input, Label, Textarea } from "./ui";
+import { ShareCourseModal } from "./share-course";
+
+type ActionType = {
+  type: string;
+  payload?: any;
+};
+
+const initialState: any = {
   nameWithCode: "",
   time: "",
   instructor: "",
   venue: "",
+
+  status: {
+    isCreating: false,
+    created: false,
+  },
 };
 
-function reducer(state: typeof initialState, action: any) {
+function reducer(state: typeof initialState, action: ActionType) {
   const { type, payload } = action;
 
   switch (type) {
@@ -27,6 +40,12 @@ function reducer(state: typeof initialState, action: any) {
     case "course.update-venue":
       return { ...state, venue: payload };
 
+    case "course.creating":
+      return { ...state, status: { isCreating: true } };
+
+    case "course.created":
+      return { ...state, status: { created: true, isCreating: false } };
+
     default:
       throw new Error("unknown action!");
   }
@@ -36,62 +55,78 @@ async function handleCreate(props: Course) {
   const { error } = await supabase.from("courses").insert({ ...props });
 
   if (error) {
+    // todo: emit a toast.
     console.log("an error occured: ", error);
+    return false;
+  } else {
+    return true;
   }
 }
 
+const key = generateCourseId();
+
 export function CreateCourse() {
-  const [{ venue, time, instructor, nameWithCode }, dispatch] =
-    React.useReducer(reducer, initialState);
+  const [
+    {
+      venue,
+      time,
+      instructor,
+      nameWithCode,
+      status: { created, isCreating },
+    },
+    dispatch,
+  ] = React.useReducer(reducer, initialState);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
     if (!nameWithCode || !venue || !time || !instructor) return;
 
-    await handleCreate({
-      id: generateCourseId(),
+    dispatch({ type: "course.creating" });
+
+    const create = await handleCreate({
+      id: key,
       instructor,
       nameWithCode,
       time,
       venue,
     });
+
+    if (create) {
+      dispatch({ type: "course.created" });
+    }
   }
 
   return (
-    <form
-      className="flex flex-col gap-6 w-full mx-auto max-w-4xl"
-      onSubmit={handleSubmit}
-    >
-      <label className="flex items-center gap-2">
-        <span className="min-w-max break-words">Course Name:</span>
-        <input
-          className="rounded-md w-full border px-6 py-2"
+    <>
+      <form
+        className="flex flex-col gap-6 w-full mx-auto max-w-4xl"
+        onSubmit={handleSubmit}
+      >
+        <Label htmlFor="course-name">Course Name:</Label>
+        <Input
+          id="course-name"
+          required
           value={nameWithCode}
           onChange={e =>
             dispatch({ type: "course.update-name", payload: e.target.value })
           }
         />
-      </label>
 
-      <label className="flex items-start gap-2">
-        <span className="min-w-max break-words">Date:</span>
-
-        <input
+        <Label htmlFor="date">Date:</Label>
+        <Input
+          id="date"
+          required
           type="date"
-          className="rounded-md w-full border px-6 py-2"
           value={time}
           onChange={e =>
             dispatch({ type: "course.update-time", payload: e.target.value })
           }
         />
-      </label>
 
-      <label className="flex items-start gap-2">
-        <span className="min-w-max break-words">Instructor:</span>
-
-        <input
-          className="rounded-md w-full border px-6 py-2"
+        <Label htmlFor="instructor">Instructor:</Label>
+        <Input
+          id="instructor"
           value={instructor}
           onChange={e =>
             dispatch({
@@ -100,14 +135,11 @@ export function CreateCourse() {
             })
           }
         />
-      </label>
 
-      <label className="flex items-start gap-2">
-        <span className="min-w-max break-words">Venue:</span>
-
-        <textarea
+        <Label htmlFor="venue">Venue:</Label>
+        <Textarea
+          id="venue"
           rows={10}
-          className="rounded-md w-full border px-6 py-2"
           value={venue}
           onChange={e =>
             dispatch({
@@ -116,14 +148,19 @@ export function CreateCourse() {
             })
           }
         />
-      </label>
 
-      <button
-        type="submit"
-        className="w-full max-w-sm mx-auto bg-blue-500 text-white text-lg font-semibold rounded-lg py-2"
-      >
-        Create
-      </button>
-    </form>
+        <Button
+          type="submit"
+          aria-disabled={isCreating}
+          className="w-full max-w-sm mx-auto text-white text-lg font-semibold rounded-lg py-2"
+        >
+          Create
+        </Button>
+      </form>
+
+      {created && (
+        <ShareCourseModal url={`${import.meta.env.VITE_URL}/courses/${key}`} />
+      )}
+    </>
   );
 }
