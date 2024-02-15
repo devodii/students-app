@@ -1,11 +1,10 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { AuthController, AuthModule } from "@students-app/auth";
-import { DatabaseModule } from "../database/database.module";
+import { AuthModule } from "../auth/auth.module";
 import { CoursesModule } from "../courses/courses.module";
+import { DatabaseModule } from "../database/database.module";
+import { AppService } from "./app.service";
 
 @Module({
   imports: [
@@ -14,7 +13,6 @@ import { CoursesModule } from "../courses/courses.module";
     ConfigModule.forRoot({ isGlobal: true }),
     CoursesModule,
   ],
-  controllers: [AppController, AuthController],
   providers: [AppService],
 })
 export class AppModule {}
