@@ -1,3 +1,4 @@
+import session from "express-session";
 import { Logger } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 
@@ -7,6 +8,17 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors();
+
+  app.use(
+    session({
+      secret: "randKey123",
+      resave: false,
+      cookie: {
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 3, // 3 days
+      },
+    })
+  );
 
   const globalPrefix = "api";
   app.setGlobalPrefix(globalPrefix);
