@@ -17,10 +17,7 @@ export default function SignInPage() {
 
     if (!email || !password) return;
 
-    const { data } = await axios.post(
-      `/api/auth/signin`,
-      { email, password }
-    );
+    const { data } = await axios.post(`/api/auth/signin`, { email, password });
 
     // todo: add type for data
     if (data.status) {

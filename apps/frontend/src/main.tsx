@@ -2,8 +2,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 
 import App from "./app";
+import { Provider } from "./providers/store";
 import "./styles.css";
-import { ReactQueryProvider } from "./providers/react-query";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,8 +11,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ReactQueryProvider>
+    <Provider>
       <App />
-    </ReactQueryProvider>
+    </Provider>
   </React.StrictMode>
 );

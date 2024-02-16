@@ -1,7 +1,8 @@
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { Course as CourseSchema } from "../../../../apps/backend/src/courses/entities/courses.entity";
+
 export type Course = {
-  id: string;
-  nameWithCode: string;
-  instructor: string;
-  time: Date;
-  venue: string;
+  [K in keyof InstanceType<typeof CourseSchema>]: InstanceType<
+    typeof CourseSchema
+  >[K];
 };

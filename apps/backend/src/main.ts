@@ -1,7 +1,6 @@
 import session from "express-session";
-import { Logger } from "@nestjs/common";
+import { Logger, ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
-
 import { AppModule } from "./app/app.module";
 
 async function bootstrap() {
@@ -19,6 +18,8 @@ async function bootstrap() {
       },
     })
   );
+
+  app.useGlobalPipes(new ValidationPipe());
 
   const globalPrefix = "api";
   app.setGlobalPrefix(globalPrefix);

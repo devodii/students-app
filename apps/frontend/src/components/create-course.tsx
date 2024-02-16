@@ -1,81 +1,26 @@
-import * as React from "react";
+import axios from "axios";
 import { Course, FormEvent } from "@students-app/types";
-
-import supabase from "../lib/supabase";
 import { generateCourseId } from "../lib/generate-course-id";
-
-import { Button, Input, Label, Textarea } from "./ui";
+import { useCourses } from "../contexts/courses-context";
 import { ShareCourseModal } from "./share-course";
+import { Button, Input, Label, Textarea } from "./ui";
 
-type ActionType = {
-  type: string;
-  payload?: any;
-};
-
-const initialState: any = {
-  nameWithCode: "",
-  time: "",
-  instructor: "",
-  venue: "",
-
-  status: {
-    isCreating: false,
-    created: false,
-  },
-};
-
-function reducer(state: typeof initialState, action: ActionType) {
-  const { type, payload } = action;
-
-  switch (type) {
-    case "course.update-name":
-      return { ...state, nameWithCode: payload };
-
-    case "course.update-time":
-      return { ...state, time: payload };
-
-    case "course.update-instructor":
-      return { ...state, instructor: payload };
-
-    case "course.update-venue":
-      return { ...state, venue: payload };
-
-    case "course.creating":
-      return { ...state, status: { isCreating: true } };
-
-    case "course.created":
-      return { ...state, status: { created: true, isCreating: false } };
-
-    default:
-      throw new Error("unknown action!");
-  }
-}
-
-async function handleCreate(props: Course) {
-  const { error } = await supabase.from("courses").insert({ ...props });
-
-  if (error) {
-    // todo: emit a toast.
-    console.log("an error occured: ", error);
-    return false;
-  } else {
-    return true;
-  }
+async function handleCreate(props: Omit<Course, "id">) {
+  const { data } = await axios.post("/api/courses", { ...props });
+  return data;
 }
 
 const key = generateCourseId();
 
 export function CreateCourse() {
-  const [
-    {
-      venue,
-      time,
-      instructor,
-      nameWithCode,
-      status: { created, isCreating },
-    },
+  const {
+    time,
+    venue,
     dispatch,
-  ] = React.useReducer(reducer, initialState);
+    instructor,
+    nameWithCode,
+    status: { created, isCreating },
+  } = useCourses();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -84,15 +29,15 @@ export function CreateCourse() {
 
     dispatch({ type: "course.creating" });
 
-    const create = await handleCreate({
-      id: key,
+    const data = await handleCreate({
+      key,
       instructor,
       nameWithCode,
-      time,
+      time: time as any,
       venue,
     });
 
-    if (create) {
+    if (data?.id) {
       dispatch({ type: "course.created" });
     }
   }

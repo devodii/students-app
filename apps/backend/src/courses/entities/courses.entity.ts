@@ -5,8 +5,11 @@ export class Course {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "varchar", nullable: false, unique: true })
   key: string;
+
+  @Column({ type: "varchar", nullable: false })
+  instructor: string;
 
   @Column({ type: "varchar", nullable: false })
   nameWithCode: string;
