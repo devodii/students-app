@@ -16,7 +16,8 @@ type ICases =
   | "course.update-instructor"
   | "course.update-venue"
   | "course.creating"
-  | "course.created";
+  | "course.created"
+  | "reset";
 
 type ActionType<T = string, P = any> = {
   type: T;
@@ -56,6 +57,9 @@ function reducer(state: typeof initialState, action: ActionType<ICases>) {
 
     case "course.created":
       return { ...state, status: { created: true, isCreating: false } };
+
+    case "reset":
+      return initialState;
 
     default:
       throw new Error("unknown action!");

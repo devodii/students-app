@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import axios from "axios";
 import { Course, FormEvent } from "@students-app/types";
 import { generateCourseId } from "../lib/generate-course-id";

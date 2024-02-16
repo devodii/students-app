@@ -14,6 +14,8 @@ import {
   Label,
   Button,
 } from "./ui";
+import { useNavigate } from "react-router-dom";
+import { useCourses } from "../contexts/courses-context";
 
 interface Props {
   url: string;
@@ -21,8 +23,16 @@ interface Props {
 }
 
 export function ShareCourseModal({ url, children: trigger }: Props) {
+  const navigate = useNavigate();
+  const { dispatch } = useCourses();
+
+  function handleRedirect() {
+    dispatch({ type: "reset" });
+    navigate("/dashboard");
+  }
+
   return (
-    <Dialog defaultOpen={true}>
+    <Dialog defaultOpen={true} onOpenChange={handleRedirect}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
@@ -44,7 +54,7 @@ export function ShareCourseModal({ url, children: trigger }: Props) {
           </Button>
         </div>
         <DialogFooter className="sm:justify-start">
-          <DialogClose asChild>
+          <DialogClose asChild onClick={handleRedirect}>
             <Button type="button" variant="secondary">
               Close
             </Button>

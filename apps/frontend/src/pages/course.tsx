@@ -30,10 +30,12 @@ export default function CoursePage() {
   return (
     <Wrapper>
       <Back />
-      <h3 className="text-3xl font-semibold">{course.nameWithCode}</h3>
-      <span>Instructor: {course.instructor}</span>
-      <span>Date: {course.time}</span>
-      <span>Venue: {course.venue}</span>
+      <div className="flex flex-col gap-2 mt-8">
+        <h3 className="text-3xl font-semibold">Name: {course.nameWithCode}</h3>
+        <span>Instructor: {course.instructor}</span>
+        <span>Date: {course.time}</span>
+        <span>Venue: {course.venue}</span>
+      </div>
     </Wrapper>
   );
 }

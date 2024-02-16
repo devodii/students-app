@@ -11,6 +11,7 @@ const DashboardPage = React.lazy(() => import("./pages/dashboard"));
 const CoursePage = React.lazy(() => import("./pages/course"));
 const ListCoursesPage = React.lazy(() => import("./pages/list-courses"));
 const CreateCoursePage = React.lazy(() => import("./pages/create-course"));
+const MyCoursesPage = React.lazy(() => import("./pages/my-courses"));
 
 const FourOhFour = React.lazy(() => import("./pages/four-oh-four"));
 
@@ -28,6 +29,7 @@ export default function App() {
               <Route path="dashboard">
                 <Route index element={<DashboardPage />} />
                 <Route path="new" element={<CreateCoursePage />} />
+                <Route path="my-courses" element={<MyCoursesPage />} />
               </Route>
               <Route path="courses">
                 <Route index element={<ListCoursesPage />} />

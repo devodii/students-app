@@ -17,9 +17,17 @@ export default function DashboardPage() {
     <Wrapper>
       <div className="flex flex-col gap-4">
         <h2 className="text-3xl font-semibold">Welcome, {user}</h2>
-        <Link to="new" className="max-w-max underline underline-offset-2">
-          Create a course link
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link to="new" className="max-w-max underline underline-offset-2">
+            Post a course
+          </Link>
+          <Link
+            to="my-courses"
+            className="max-w-max underline underline-offset-2"
+          >
+            View courses you posted
+          </Link>
+        </div>
       </div>
     </Wrapper>
   );
