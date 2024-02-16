@@ -1,17 +1,17 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
-import { AuthModule } from "../auth/auth.module";
 import { CoursesModule } from "../courses/courses.module";
 import { DatabaseModule } from "../database/database.module";
 import { AppService } from "./app.service";
+import { AccessModule } from "../access/access.module";
 
 @Module({
   imports: [
-    AuthModule,
+    AccessModule,
     DatabaseModule,
-    ConfigModule.forRoot({ isGlobal: true }),
     CoursesModule,
+    ConfigModule.forRoot({ isGlobal: true }),
   ],
   providers: [AppService],
 })
