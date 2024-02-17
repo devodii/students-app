@@ -1,10 +1,9 @@
 import { Course } from "@students-app/types";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
+import { Back } from "../components/back";
 import { CourseCard } from "../components/course-card";
 import { Wrapper } from "../components/wrapper";
 import { fetchAllCourse } from "../services/course";
-import { Back } from "../components/back";
 
 export default function MyCoursesPage() {
   const { data: courses, isLoading } = useQuery({
