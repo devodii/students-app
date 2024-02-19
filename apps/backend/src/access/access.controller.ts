@@ -16,7 +16,7 @@ export class AccessController {
   @Post("signin")
   async signIn(
     @Body() dto: SignInDto,
-    @Session() session: Record<string, any>
+    @Session() session: Record<string, unknown>
   ) {
     const user = await this.accessService.signIn(dto);
 
@@ -28,7 +28,16 @@ export class AccessController {
   }
 
   @Post("signup")
-  async signUp(@Body() dto: SignUpDto) {
-    return await this.accessService.signUp(dto);
+  async signUp(
+    @Body() dto: SignUpDto,
+    @Session() session: Record<string, unknown>
+  ) {
+    const user = await this.accessService.signUp(dto);
+
+    if (user.status) {
+      session.user = user?.content;
+    }
+
+    return user;
   }
 }

@@ -20,8 +20,8 @@ export class AccessService {
 
   async signUp(dto: SignUpDto) {
     try {
-      await this.usersService.create(dto.email, dto.password);
-      return { status: true, object: "user.created" };
+      const user = await this.usersService.create(dto.email, dto.password);
+      return { status: true, object: "user.created", content: user };
     } catch (error) {
       console.error(error);
       return { status: false };
