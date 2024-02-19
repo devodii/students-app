@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+  students-app:
+    image: students-app
+    container_name: students-app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - '3000:3000'
+      - '4200:4200'
+    volumes:
+      - .:/usr/src/app
+      - usr/src/app/node_modules
+    environment:
+      NODE_ENV: production
