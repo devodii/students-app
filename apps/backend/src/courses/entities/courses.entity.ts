@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  PrimaryColumn,
+  Column,
+  ManyToOne,
+} from "typeorm";
+import { User } from "../../users/entities/user.entity";
 
 @Entity()
 export class Course {
@@ -19,4 +26,7 @@ export class Course {
 
   @Column({ type: "text", nullable: false })
   venue: string;
+
+  @ManyToOne(() => User, user => user.courses)
+  creator: User;
 }

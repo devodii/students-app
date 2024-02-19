@@ -7,9 +7,13 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  UseGuards,
 } from "@nestjs/common";
 import { CoursesService, type ID } from "./courses.service";
 import { CreateCourseDto, UpdateCourseDto } from "./dtos";
+import { Roles } from "../users/decorators/roles.decorator";
+import { UserRoleEnum } from "../users/enums/role.enum";
+import { RolesGuard } from "./guards/roles.guard";
 
 @Controller("courses")
 export class CoursesController {
@@ -26,6 +30,8 @@ export class CoursesController {
   }
 
   @Post()
+  @UseGuards(RolesGuard)
+  @Roles(UserRoleEnum.COURSE_REP)
   async createCourse(@Body() dto: CreateCourseDto) {
     return await this.coursesService.create(dto);
   }

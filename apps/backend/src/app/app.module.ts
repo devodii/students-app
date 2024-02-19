@@ -5,6 +5,7 @@ import { CoursesModule } from "../courses/courses.module";
 import { DatabaseModule } from "../database/database.module";
 import { AppService } from "./app.service";
 import { AccessModule } from "../access/access.module";
+import { UsersModule } from "../users/users.module";
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { AccessModule } from "../access/access.module";
     DatabaseModule,
     CoursesModule,
     ConfigModule.forRoot({ isGlobal: true }),
+    UsersModule,
   ],
   providers: [AppService],
 })

@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  students-app:
+    image: students-app
+    container_name: students-app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+      - "4200:4200"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules # Corrected volume mapping
+    environment:
+      NODE_ENV: production
+
+  database:
+    image: postgres:15.1
+    hostname: database
+    container_name: students-app-database
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=randPassword123
+      - POSTGRES_DB=students-app
+      - POSTGRES_HOST=localhost
+      - POSTGRES_PORT=5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "students-app"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    depends_on:
+      - students-app
