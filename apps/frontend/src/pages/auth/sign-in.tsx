@@ -28,6 +28,7 @@ export default function SignInPage() {
     }
   }
 
+  // todo: create Form component and add onSuccess prop to redirect at application level
   return (
     <Wrapper>
       <h2 className="font-semibold text-4xl text-center">Signin</h2>

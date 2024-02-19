@@ -7,9 +7,11 @@ WORKDIR /usr/src/app
 
 COPY . . 
 
-RUN npm install
+RUN npm i -g pnpm
 
-RUN npm install @nrwl/cli
+RUN pnpm install @nrwl/cli
+
+RUN pnpm install
 
 RUN npx nx run-many --target=build --all
 

@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Logger, Post, Session } from "@nestjs/common";
 import { AccessService } from "./access.service";
-import { SignInDto } from "./dto";
+import { SignInDto, SignUpDto } from "./dto";
 
 @Controller("auth")
 export class AccessController {
@@ -14,13 +14,21 @@ export class AccessController {
   }
 
   @Post("signin")
-  signIn(@Body() dto: SignInDto, @Session() session: Record<string, any>) {
-    const user = this.accessService.signIn(dto);
+  async signIn(
+    @Body() dto: SignInDto,
+    @Session() session: Record<string, any>
+  ) {
+    const user = await this.accessService.signIn(dto);
 
     if (user.status) {
       session.user = user?.content;
     }
 
     return user;
+  }
+
+  @Post("signup")
+  async signUp(@Body() dto: SignUpDto) {
+    return await this.accessService.signUp(dto);
   }
 }
