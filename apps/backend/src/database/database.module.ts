@@ -4,14 +4,10 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      synchronize: true,
-      autoLoadEntities: true, // automatically saves schema by calling .forFeature()
       type: "postgres",
-      host: "db",
-      password: "randPassword123",
-      username: "postgres",
-      port: 5432,
-      database: "students-app",
+      url: "postgres://postgres:randPassword123@localhost:5432/students-app",
+      synchronize: true,
+      autoLoadEntities: true,
       retryAttempts: 9999,
     }),
   ],
