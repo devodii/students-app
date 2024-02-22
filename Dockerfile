@@ -16,4 +16,4 @@ RUN pnpm install
 RUN npx nx run-many --target=build --all
 
 # deploy backend
-CMD cd dist/apps/backend && node main.js
+# CMD cd dist/apps/backend && node main.js
