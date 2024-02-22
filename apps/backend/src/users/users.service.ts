@@ -21,5 +21,8 @@ export class UsersService {
 
     return user;
   }
-  public name = "Emmanuel Odii";
+
+  findAll = async () => {
+    return await this.repo.find();
+  };
 }

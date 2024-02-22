@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "lint": "prettier ./apps"
+    "lint": "prettier ./apps",
+    "backend:prod": "cd dist/apps/backend && node main.js "
   },
   "private": true,
   "dependencies": {
