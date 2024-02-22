@@ -14,7 +14,6 @@ import { map } from "rxjs";
 export class SerializeInterceptor implements NestInterceptor {
   constructor(private dto: ClassConstructor<any>) {}
   intercept(context: ExecutionContext, handler: CallHandler<any>) {
-    console.log({ context });
     return handler
       .handle()
       .pipe(map(data => data.map((c: any) => plainToInstance(this.dto, c))));
