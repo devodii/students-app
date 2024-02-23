@@ -13,6 +13,7 @@ export class AccessController {
 
   @Get("whoAmI")
   whoAmI(@Session() session: Record<string, any>) {
+    this.logger.log("getting current user");
     return session.user ? session.user : null;
   }
 
@@ -21,6 +22,7 @@ export class AccessController {
     @Body() dto: SignInDto,
     @Session() session: Record<string, unknown>
   ) {
+    this.logger.log("attempt to sign in");
     const user = await this.accessService.signIn(dto);
 
     if (user.status) {
@@ -35,6 +37,7 @@ export class AccessController {
     @Body() dto: SignUpDto,
     @Session() session: Record<string, unknown>
   ) {
+    this.logger.log("attempt to sign up");
     const user = await this.accessService.signUp(dto);
 
     if (user.status) {

@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Logger,
   Param,
   ParseIntPipe,
   Patch,
@@ -19,6 +20,8 @@ import { RolesGuard } from "./guards/roles.guard";
 export class CoursesController {
   constructor(private coursesService: CoursesService) {}
 
+  private logger = new Logger(CoursesController.name);
+
   @Get()
   async findAllCourses() {
     return await this.coursesService.findAll();
@@ -26,6 +29,7 @@ export class CoursesController {
 
   @Get(":key")
   async findOneCourse(@Param("key") key: string) {
+    this.logger.log("getting course by key");
     return await this.coursesService.find(key);
   }
 
