@@ -7,7 +7,7 @@ import { useCourses } from "../contexts/courses-context";
 import { ShareCourseModal } from "./share-course";
 import { Button, Input, Label, Textarea } from "./ui";
 
-async function handleCreate(props: Omit<Course, "id">) {
+async function handleCreate(props: Partial<Course>) {
   const { data } = await axios.post("/api/courses", { ...props });
   return data;
 }
