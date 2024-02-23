@@ -7,7 +7,11 @@ import { Course } from "@students-app/types";
 import { fetchAllCourse } from "../services/course";
 
 export default function CoursesPage() {
-  const { data: courses, isLoading } = useQuery({
+  const {
+    data: courses,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["courses"],
     queryFn: fetchAllCourse,
   });
@@ -16,6 +20,9 @@ export default function CoursesPage() {
     return <Wrapper>Loading courses...</Wrapper>;
   }
 
+  if (isError) {
+    return <Wrapper>An error occured while fetching courses</Wrapper>;
+  }
   return (
     <Wrapper>
       <h2 className="font-semibold text-4xl text-center mb-6">
