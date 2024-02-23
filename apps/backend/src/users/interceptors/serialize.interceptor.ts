@@ -16,7 +16,13 @@ export class SerializeInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, handler: CallHandler<any>) {
     return handler
       .handle()
-      .pipe(map(data => data.map((c: any) => plainToInstance(this.dto, c))));
+      .pipe(
+        map(data =>
+          Array.isArray(data)
+            ? data.map((c: any) => plainToInstance(this.dto, c))
+            : plainToInstance(this.dto, data)
+        )
+      );
   }
 }
 

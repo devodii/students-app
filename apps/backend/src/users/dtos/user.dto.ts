@@ -1,6 +1,6 @@
 import { Exclude, Expose } from "class-transformer";
 import { User } from "../entities/user.entity";
-import { UserRoleEnum } from "../enums/role.enum";
+import { UserRoleEnum } from "@students-app/enums";
 import { Course } from "../../courses/entities/courses.entity";
 
 export class UserDto implements Partial<User> {

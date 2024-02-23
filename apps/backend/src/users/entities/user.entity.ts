@@ -1,5 +1,5 @@
+import { UserRoleEnum } from "@students-app/enums";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { UserRoleEnum } from "../enums/role.enum";
 import { Course } from "../../courses/entities/courses.entity";
 
 @Entity()
