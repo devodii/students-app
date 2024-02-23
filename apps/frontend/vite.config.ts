@@ -8,7 +8,7 @@ export default defineConfig({
   cacheDir: "../../node_modules/.vite/apps/frontend",
 
   server: {
-    port: 4200,
+    port: Number(process.env.VITE_PORT) || 4200,
     host: process.env.VITE_SERVER_HOST || "localhost",
     proxy: {
       "/api": {
