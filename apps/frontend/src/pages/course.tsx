@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
-import { Wrapper } from "../components/wrapper";
-import { Back } from "../components/back";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useParams } from "react-router-dom";
+import { Back } from "../components/back";
+import { Wrapper } from "../components/wrapper";
+import axiosInstance from "../services/axios-instance";
 
 export default function CoursePage() {
   const { id } = useParams();
@@ -14,7 +14,7 @@ export default function CoursePage() {
   } = useQuery({
     queryKey: ["courses", id],
     queryFn: async () => {
-      const { data } = await axios.get(`/api/courses/${id}`);
+      const { data } = await axiosInstance.get(`/api/courses/${id}`);
       return data;
     },
   });

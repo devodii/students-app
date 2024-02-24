@@ -1,10 +1,10 @@
-import * as React from "react";
 import { FormEvent } from "@students-app/types";
+import * as React from "react";
 import { Button, Input, Label } from "../../components/ui";
 import { Wrapper } from "../../components/wrapper";
 
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../services/axios-instance";
 
 export default function SignInPage() {
   const [email, setEmail] = React.useState("");
@@ -17,7 +17,7 @@ export default function SignInPage() {
 
     if (!email || !password) return;
 
-    const { data } = await axios.post(`/api/auth/signin`, { email, password });
+    const { data } = await axiosInstance.post(`/api/auth/signin`, { email, password });
 
     // todo: add type for data
     if (data.status) {

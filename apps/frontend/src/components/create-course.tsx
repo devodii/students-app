@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import axios from "axios";
 import { Course, FormEvent } from "@students-app/types";
-import { generateCourseId } from "../lib/generate-course-id";
 import { useCourses } from "../contexts/courses-context";
+import { generateCourseId } from "../lib/generate-course-id";
+import axiosInstance from "../services/axios-instance";
 import { ShareCourseModal } from "./share-course";
 import { Button, Input, Label, Textarea } from "./ui";
 
 async function handleCreate(props: Partial<Course>) {
-  const { data } = await axios.post("/api/courses", { ...props });
+  const { data } = await axiosInstance.post("/api/courses", { ...props });
   return data;
 }
 

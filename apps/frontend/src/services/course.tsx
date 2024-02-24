@@ -1,7 +1,7 @@
-import axios from "axios";
+import axiosInstance from "./axios-instance";
 
 async function fetchAllCourse() {
-  const { data } = await axios.get("/api/courses");
+  const { data } = await axiosInstance.get("/api/courses");
   console.log({ data });
   return data;
 }

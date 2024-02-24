@@ -1,6 +1,6 @@
-import axios from "axios";
 import * as React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axiosInstance from "../services/axios-instance";
 
 export function AuthProvider({ children }: React.PropsWithChildren) {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ export function AuthProvider({ children }: React.PropsWithChildren) {
   React.useEffect(() => {
     async function fetchWhoAmI() {
       // expects an email
-      const { data } = await axios.get("/api/auth/whoAmI");
+      const { data } = await axiosInstance.get("/api/auth/whoAmI");
 
       if (!data && pathname.includes("/dashboard")) {
         navigate("/sign-in");

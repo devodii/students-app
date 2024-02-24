@@ -9,14 +9,15 @@ export default defineConfig({
 
   server: {
     port: Number(process.env.VITE_PORT) || 4200,
-    host: process.env.VITE_SERVER_HOST || "localhost",
-    proxy: {
-      "/api": {
-        target: process.env.VITE_API_URL || "http://localhost:3000/api",
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, ""),
-      },
-    },
+    host: true,
+    // proxy: {
+    //   "/api": {
+    //     target: process.env.VITE_API_URL || "http://localhost:3000/api",
+    //     changeOrigin: true,
+    //     rewrite: path => path.replace(/^\/api/, ""),
+    //   },
+    // },
+    // middlewareMode,
   },
 
   preview: {
