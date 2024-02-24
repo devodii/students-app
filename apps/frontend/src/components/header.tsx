@@ -4,7 +4,6 @@ import { useUser } from "../hooks/use-user";
 export function Header() {
   const { data: user } = useUser();
 
-  console.log({ user });
   return (
     <header className="w-full flex flex-wrap justify-between items-center">
       <h3 className="text-xl font-medium">Students App</h3>
