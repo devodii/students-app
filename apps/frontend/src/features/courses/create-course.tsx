@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Course, FormEvent } from "@students-app/types";
-import { useCourses } from "../contexts/courses-context";
-import { generateCourseId } from "../lib/generate-course-id";
-import axiosInstance from "../services/axios-instance";
+import { useCourses } from "../../contexts/courses-context";
+import { generateCourseKey } from "./helper";
+import axiosInstance from "../../services/axios-instance";
 import { ShareCourseModal } from "./share-course";
-import { Button, Input, Label, Textarea } from "./ui";
+import { Button, Input, Label, Textarea } from "../../components/ui";
 
 async function handleCreate(props: Partial<Course>) {
   const { data } = await axiosInstance.post("/api/courses", { ...props });
   return data;
 }
 
-const key = generateCourseId();
+const key = generateCourseKey();
 
 export function CreateCourse() {
   const {

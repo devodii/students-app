@@ -1,5 +1,5 @@
 import { Back } from "../components/back";
-import { CreateCourse } from "../components/create-course";
+import { CreateCourse } from "../features/courses/create-course";
 import { Wrapper } from "../components/wrapper";
 
 export default function CreateCoursePage() {

@@ -1,4 +1,4 @@
-export function generateCourseId(): string {
+export function generateCourseKey(): string {
   const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
   let randomId = "";
 

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { CourseCard } from "../components/course-card";
+import { CourseCard } from "../features/courses/course-card";
 import { Wrapper } from "../components/wrapper";
 
 import { Course } from "@students-app/types";

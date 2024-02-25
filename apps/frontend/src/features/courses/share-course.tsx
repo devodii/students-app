@@ -13,9 +13,9 @@ import {
   Input,
   Label,
   Button,
-} from "./ui";
+} from "../../components/ui";
 import { useNavigate } from "react-router-dom";
-import { useCourses } from "../contexts/courses-context";
+import { useCourses } from "../../contexts/courses-context";
 
 interface Props {
   url: string;
