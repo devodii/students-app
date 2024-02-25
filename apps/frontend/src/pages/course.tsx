@@ -2,21 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { Back } from "../components/back";
 import { Wrapper } from "../components/wrapper";
-import axiosInstance from "../services/axios-instance";
+import { fetchCourse } from "../services/course";
 
 export default function CoursePage() {
-  const { id } = useParams();
+  const { key } = useParams();
 
   const {
     isLoading,
     data: course,
     isError,
   } = useQuery({
-    queryKey: ["courses", id],
-    queryFn: async () => {
-      const { data } = await axiosInstance.get(`/api/courses/${id}`);
-      return data;
-    },
+    queryKey: ["courses", key],
+    queryFn: () => fetchCourse(key!),
   });
 
   if (isLoading) {

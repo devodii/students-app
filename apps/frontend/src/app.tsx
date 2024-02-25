@@ -33,7 +33,7 @@ export default function App() {
               </Route>
               <Route path="courses">
                 <Route index element={<ListCoursesPage />} />
-                <Route path=":id" element={<CoursePage />} />
+                <Route path=":key" element={<CoursePage />} />
               </Route>
             </Route>
 

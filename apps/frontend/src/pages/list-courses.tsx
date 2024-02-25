@@ -4,7 +4,7 @@ import { CourseCard } from "../features/courses/course-card";
 import { Wrapper } from "../components/wrapper";
 
 import { Course } from "@students-app/types";
-import { fetchAllCourse } from "../services/course";
+import { fetchAllCourses } from "../services/course";
 
 export default function CoursesPage() {
   const {
@@ -13,7 +13,7 @@ export default function CoursesPage() {
     isError,
   } = useQuery({
     queryKey: ["courses"],
-    queryFn: fetchAllCourse,
+    queryFn: fetchAllCourses,
   });
 
   if (isLoading) {

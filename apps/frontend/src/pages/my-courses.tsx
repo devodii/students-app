@@ -3,12 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Back } from "../components/back";
 import { CourseCard } from "../features/courses/course-card";
 import { Wrapper } from "../components/wrapper";
-import { fetchAllCourse } from "../services/course";
+import { fetchAllCourses } from "../services/course";
 
 export default function MyCoursesPage() {
   const { data: courses, isLoading } = useQuery({
     queryKey: ["courses"],
-    queryFn: fetchAllCourse,
+    queryFn: fetchAllCourses,
   });
 
   if (isLoading) {
