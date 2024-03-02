@@ -1,4 +1,4 @@
-import { Course } from "@students-app/types";
+import { Course } from "@betastudents/types";
 import { useQuery } from "@tanstack/react-query";
 import { Back } from "../components/back";
 import { CourseCard } from "../features/courses/course-card";

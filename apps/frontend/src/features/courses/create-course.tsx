@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Course, FormEvent } from "@students-app/types";
+import { Course, FormEvent } from "@betastudents/types";
 import { useCourses } from "../../contexts/courses-context";
 import { generateCourseKey } from "./helper";
 import axiosInstance from "../../services/axios-instance";

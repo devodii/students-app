@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Wrapper } from "../components/wrapper";
 import { useUser } from "../hooks/use-user";
-import { UserRoleEnum } from "@students-app/enums";
+import { UserRoleEnum } from "@betastudents/enums";
 
 export default function DashboardPage() {
   const { data: user, isLoading, isError } = useUser();

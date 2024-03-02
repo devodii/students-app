@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { FormEvent } from "@students-app/types";
+import { FormEvent } from "@betastudents/types";
 import { useNavigate } from "react-router-dom";
 import { Button, Input, Label } from "../../components/ui";
 import { Wrapper } from "../../components/wrapper";

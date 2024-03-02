@@ -1,4 +1,4 @@
-import { Course } from "@students-app/types";
+import { Course } from "@betastudents/types";
 
 export function CourseCard({
   instructor,

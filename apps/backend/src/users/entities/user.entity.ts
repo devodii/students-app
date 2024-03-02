@@ -1,4 +1,4 @@
-import { UserRoleEnum } from "@students-app/enums";
+import { UserRoleEnum } from "@betastudents/enums";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Course } from "../../courses/entities/courses.entity";
 

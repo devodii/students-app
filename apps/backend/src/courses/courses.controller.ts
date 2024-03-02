@@ -13,7 +13,7 @@ import {
 import { CoursesService, type ID } from "./courses.service";
 import { CreateCourseDto, UpdateCourseDto } from "./dtos";
 import { Roles } from "../users/decorators/roles.decorator";
-import { UserRoleEnum } from "@students-app/enums";
+import { UserRoleEnum } from "@betastudents/enums";
 import { RolesGuard } from "./guards/roles.guard";
 
 @Controller("courses")

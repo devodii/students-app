@@ -1,4 +1,4 @@
-import { FormEvent } from "@students-app/types";
+import { FormEvent } from "@betastudents/types";
 import * as React from "react";
 import { Button, Input, Label } from "../../components/ui";
 import { Wrapper } from "../../components/wrapper";
@@ -17,7 +17,10 @@ export default function SignInPage() {
 
     if (!email || !password) return;
 
-    const { data } = await axiosInstance.post(`/api/auth/signin`, { email, password });
+    const { data } = await axiosInstance.post(`/api/auth/signin`, {
+      email,
+      password,
+    });
 
     // todo: add type for data
     if (data.status) {

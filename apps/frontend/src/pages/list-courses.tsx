@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { CourseCard } from "../features/courses/course-card";
 import { Wrapper } from "../components/wrapper";
 
-import { Course } from "@students-app/types";
+import { Course } from "@betastudents/types";
 import { fetchAllCourses } from "../services/course";
 
 export default function CoursesPage() {

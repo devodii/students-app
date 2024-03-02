@@ -16,9 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@students-app/analytics": ["libs/analytics/src/index.ts"],
-      "@students-app/enums": ["libs/enums/src/index.ts"],
-      "@students-app/types": ["libs/types/src/index.ts"]
+      "@betastudents/analytics": ["libs/analytics/src/index.ts"],
+      "@betastudents/enums": ["libs/enums/src/index.ts"],
+      "@betastudents/types": ["libs/types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
